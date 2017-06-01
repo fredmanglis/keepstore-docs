@@ -1,0 +1,56 @@
+Keepstore Documentation
+=======================
+:Author: Frederick M. Muriithi
+:Email: fredmanglis@gmail.com
+:Date: June 2017
+:Revision: v0.0.1
+
+== Introduction
+
+Keepstore is ...
+
+== Installation
+
+=== Install with GNU Guix
+Please clone https://github.com/fredmanglis/guix-arvados[the keepstore definition for guix repository] and follow the instructions in the README file.
+
+=== Using Arvados Documentation
+Please see the http://doc.arvados.org/install/install-keepstore.html[keepstore installation documentation] for instructions on how to install arvados keepstore.
+
+You might need to first follow some instructions in the http://doc.arvados.org/install/install-manual-prerequisites.html[prerequisites] to set up your package manager's repositories first.
+
+== Configuring And Running
+
+=== Authentication/Authorisation
+
+Reading through the documentation to try and understand how the system is put together, it seems that the authentication is not handled in keep itself. Quoting one of the point in https://dev.arvados.org/projects/arvados/wiki/Keep#Servers:
+
+[quote]
+____
+Retrieve data blocks and send to clients over the network (subject to permission, which is determined by the system/metadata DB)
+____
+
+The https://dev.arvados.org/projects/arvados/wiki/REST_API_Server[API Server] provides a way to authenticate, but also comes with a lot of other things.
+
+To quote the https://godoc.org/github.com/curoverse/arvados/services/keep-web[keep-web documentation]:
+
+[quote]
+____
+Keep-web provides read-only HTTP access to files stored in Keep
+____
+
+which means data already stored in keep can be accessed, but you won't be able to write to keepstore. It also makes use of the API Server to authenticate the clients requesting private data.
+
+So far, it looks like the API Server might be the glue that binds the different parts together
+
+=== Replication
+
+https://dev.arvados.org/projects/arvados/wiki/Keep-balance[Keep-balance] which replaced Data Manager, seems to be what handles replication.
+
+=== Summary
+
+The following things might be what is needed to get keepstore with authentication and replication:
+
+* API Server (Provides API to do authentication, and a lot of other things)
+* keepstore (Handles the storage and retrieval of data)
+* keep-balance (Handles the replication)
