@@ -24,3 +24,26 @@ This is being investigated at this time.
 === Configuring Authentication
 
 See link:arvados-sso-server.asciidoc[arvados-sso-server].
+
+=== Informing API Server of Keepstore Servers
+
+To inform the API Server of available keepstore servers, you simply enter a record in the `keep_services` table in the _arvados_production_ database.
+The record _MUST_ have the following fields:
+
+.Database Fields
+[format="csv",cols="2",options="header"]
+|====
+FIELD,DEFINITION
+uuid,explain this
+owner_uuid,explain this
+service_host,The url at which the service can be reached
+service_port,The port the service is running at
+service_ssl_flag,Whether or not ssl is in use
+service_type,Whether it is disk or cloud storage or any other (find out more)
+created_at,Date and time the entry was made
+updated_at,Date and time the entry was updated last
+|====
+	
+== References
+
+* http://doc.arvados.org/api/index.html[API References]
