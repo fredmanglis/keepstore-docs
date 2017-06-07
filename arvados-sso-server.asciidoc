@@ -13,6 +13,3 @@ See the http://doc.arvados.org/install/install-sso.html[installation and configu
 
 The _arvados-sso-server_ codebase is separate from the rest of the arvados code, and can be found https://github.com/curoverse/sso-devise-omniauth-provider[here].
 
-== References
-
-* API Authorisation Process: http://doc.arvados.org/api/tokens.html
