@@ -1,0 +1,26 @@
+= API SERVER Documentation
+=======================
+:Author: Frederick M. Muriithi
+:Email: fredmanglis@gmail.com
+:Date: June 2017
+:Revision: v0.0.1
+
+== Introduction
+
+The https://arvados.org[Arvados] API Server seems to be the glue that binds the various services together, enabling authentication to happen, data to be stored and retrieved, and computations to be done.
+
+The focus here is on storage and retrieval of data in link:keepstore.asciidoc[Keepstore], so this document will hold data on how to configure the API Server for that.
+
+There will also be need to authenticate the users of the system, meaning documentation on how to do that will also be present.
+
+== Installation and Configuration
+
+The installation process that is currently being considered is that documented at http://doc.arvados.org/install/install-api-server.html[the Arvados wiki]. The page contains information on how to configure most parts of the API server.
+
+=== Informing the API Server of Available Keepstore Servers
+
+This is being investigated at this time.
+
+=== Configuring Authentication
+
+See link:arvados-sso-server.asciidoc[arvados-sso-server].
