@@ -47,6 +47,27 @@ So far, it looks like the API Server might be the glue that binds the different 
 
 https://dev.arvados.org/projects/arvados/wiki/Keep-balance[Keep-balance] which replaced Data Manager, seems to be what handles replication.
 
+== Manual Testing
+1. Start the keepstore server, say at port 4090 on localhost
+
+2. Create a file, call it 'fox' and put the following content in it:
+   The quick brown fox jumps over the lazy dog.
+
+3. Get the md5 hash of the file:
+[source,bash]
+----
+md5sum fox
+----
+
+4. Save the file in keepstore with a curl by running:
+[source,bash]
+----
+curl --upload-file fox 127.0.0.1:4090/<md5sum-of-file>
+----
+replacing '<md5-sum-of-file>' with the md5 hash you got in step 3 above
+
+5. Retrieve the file by visiting _http(s)://127.0.0.1:4090/<md5sum-of-file>_ in your browser, or running 'curl 127.0.0.1:4090/<md5sum-of-file>'
+
 === Summary
 
 The following things might be what is needed to get keepstore with authentication and replication:
