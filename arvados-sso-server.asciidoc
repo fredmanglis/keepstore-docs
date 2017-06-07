@@ -1,0 +1,18 @@
+= arvados-sso-server Documentation
+=======================
+:Author: Frederick M. Muriithi
+:Email: fredmanglis@gmail.com
+:Date: June 2017
+:Revision: v0.0.1
+
+== Introduction
+The _arvados-sso-server_ provides a way to authenticate users and clients before giving the access to the various arvados services.
+
+== Installation and Configuration
+See the http://doc.arvados.org/install/install-sso.html[installation and configuration documentation] on the Arvados wiki.
+
+The _arvados-sso-server_ codebase is separate from the rest of the arvados code, and can be found https://github.com/curoverse/sso-devise-omniauth-provider[here].
+
+== References
+
+* API Authorisation Process: http://doc.arvados.org/api/tokens.html
