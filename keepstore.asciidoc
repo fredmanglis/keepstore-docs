@@ -23,6 +23,15 @@ You might need to first follow some instructions in the http://doc.arvados.org/i
 
 === Authentication/Authorisation
 
+To ensure that keepstore only responds when the authentication is successful, ensure that the _RequireSignatures_ value is set to _true_.
+
+This will ensure that keepstore only responds with the data when the a token generated from the API server is passed to keepstore: To quote the http://doc.arvados.org/api/storage.html[API for storage]:
+
+[quote]
+____
+A token signature (sign-hint) provides proof-of-access for a data block. It is computed by taking a SHA1 HMAC of the blob signing token (a shared secret between the API server and keep servers), block digest, current API token, expiration timestamp, and blob signature TTL.
+____
+
 Reading through the documentation to try and understand how the system is put together, it seems that the authentication is not handled in keep itself. Quoting one of the point in https://dev.arvados.org/projects/arvados/wiki/Keep#Servers:
 
 [quote]
