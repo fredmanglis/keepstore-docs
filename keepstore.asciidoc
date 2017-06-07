@@ -66,7 +66,7 @@ curl --upload-file fox 127.0.0.1:4090/<md5sum-of-file>
 ----
 replacing '<md5-sum-of-file>' with the md5 hash you got in step 3 above
 
-5. Retrieve the file by visiting _http(s)://127.0.0.1:4090/<md5sum-of-file>_ in your browser, or running 'curl 127.0.0.1:4090/<md5sum-of-file>'
+5. Retrieve the file by visiting _http(s)://127.0.0.1:4090/<md5sum-of-file>_ in your browser, or running 'curl 127.0.0.1:4090/<md5sum-of-file>' on your terminal.
 
 === Summary
 
