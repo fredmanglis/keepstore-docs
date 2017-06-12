@@ -14,8 +14,8 @@ See the http://doc.arvados.org/install/install-sso.html[installation and configu
 The _arvados-sso-server_ codebase is separate from the rest of the arvados code, and can be found https://github.com/curoverse/sso-devise-omniauth-provider[here].
 
 [Note]
-====
+----
 The configuration files are in `/etc/arvados/sso/` directory by default.
 
 The 'default_link_url' setting needs to be a resolvable uri, otherwise, the redirection tends to fail.
-====
+----
