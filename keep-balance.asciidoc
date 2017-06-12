@@ -1,0 +1,22 @@
+= Keep-balance Documentation
+=======================
+:Author: Frederick M. Muriithi
+:Email: fredmanglis@gmail.com
+:Date: June 2017
+:Revision: v0.0.1
+
+== Introduction
+
+Keep-balance is used for maintaining a balance within a set of keepstore servers. It creates new copies of underreplicated blocks, and deletes excess copies of overreplicated and unreferenced blocks. (see `keep-balance -h`)
+
+== Installation and Configuration
+
+[Note]
+====
+Keep-balance is a https client. It expects that the connection to the API Server is over HTTPS, and if not, it complains. At this 
+====
+
+Install according to http://doc.arvados.org/install/install-keep-balance.html[the instructions on the wiki] for now. The instructions also go through configuring the system.
+
+== Notes
+1. Keep-balance does not replicate data across the volumes of an individual server, but it does replicate the data across different servers (confirm this)
