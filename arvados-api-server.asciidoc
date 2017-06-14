@@ -34,7 +34,7 @@ The record _MUST_ have the following fields:
 [format="csv",cols="3",options="header"]
 |====
 FIELD,DEFINITION,REQUIRED
-uuid,The uuid of the new service. It is composed of 3 parts, in a pattern like the following 'xxxxx-xxxxx-xxxxxxxxxxxxxxx'. The first field of 5 characters is the 'uuid_prefix' that was set up as defined in http://doc.arvados.org/install/install-manual-prerequisites.html[the prerequisites] for the installation.,Y
+uuid,The uuid of the new service. It is composed of 3 parts in a pattern like the following 'xxxxx-xxxxx-xxxxxxxxxxxxxxx'. The first field of 5 characters is the 'uuid_prefix' that was set up as defined in http://doc.arvados.org/install/install-manual-prerequisites.html[the prerequisites] for the installation.,Y
 owner_uuid,The uuid of the user that added the keepstore server.,Y
 modified_by_client_uuid,The uuid of client used to add the keepstore server to the database.,N
 modified_by_user_uuid,The uuid of the last user to modify the database entry.,N
