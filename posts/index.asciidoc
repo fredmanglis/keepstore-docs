@@ -114,6 +114,39 @@ The password that was used while creating the API server database
 host::
 The hostname on which the API server database is.
 
+=== The Shell Server
+
+This part provides some utilities useful in configuring and testing the other parts of the system. It also provides the SDK.
+
+Please follow the process http://doc.arvados.org/install/install-shell-server.html[here] to install the shell server.
+
+The shell server does not have much configuration to do.
+
+=== The Keepstore Server
+
+This is the heart of the storage system we are building. It is this component that actually stores the data on whichever volumes it has been configured to use.
+
+==== Installing and Configuring Keepstore
+
+There are 2 ways to install:
+
+With GNU Guix::
+  * Clone https://github.com/fredmanglis/guix-arvados[this repository].
+  * Set up `GUIX_PACKAGE_PATH` environment variable. For example, if you cloned the repository into the following directory _$HOME/repositories/guix-arvados_ run, `export GUIX_PACKAGE_PATH=$HOME/repositories/guix-arvados`
+  * Install: run `guix package --install=arvados-keep`
+  * Test that keepstore was installed: run `keepstore --help`
+
+According to Arvados Documentation::
+Follow http://doc.arvados.org/install/install-keepstore.html[the keepstore installation] process on the Arvados documentation.
+
+===== Configuration
+
+TODO: Update this
+
+=== Keep-balance
+
+TODO: Fill this in
+
 == Repositories
 
 Here is a list of the code repositories for the various parts of the system:

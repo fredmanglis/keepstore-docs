@@ -966,6 +966,65 @@ The hostname on which the API server database is.
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_the_shell_server">The Shell Server</h3>
+<div class="paragraph"><p>This part provides some utilities useful in configuring and testing the other parts of the system. It also provides the SDK.</p></div>
+<div class="paragraph"><p>Please follow the process <a href="http://doc.arvados.org/install/install-shell-server.html">here</a> to install the shell server.</p></div>
+<div class="paragraph"><p>The shell server does not have much configuration to do.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_the_keepstore_server">The Keepstore Server</h3>
+<div class="paragraph"><p>This is the heart of the storage system we are building. It is this component that actually stores the data on whichever volumes it has been configured to use.</p></div>
+<div class="sect3">
+<h4 id="_installing_and_configuring_keepstore">Installing and Configuring Keepstore</h4>
+<div class="paragraph"><p>There are 2 ways to install:</p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+With GNU Guix
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Clone <a href="https://github.com/fredmanglis/guix-arvados">this repository</a>.
+</p>
+</li>
+<li>
+<p>
+Set up <span class="monospaced">GUIX_PACKAGE_PATH</span> environment variable. For example, if you cloned the repository into the following directory <em>$HOME/repositories/guix-arvados</em> run, <span class="monospaced">export GUIX_PACKAGE_PATH=$HOME/repositories/guix-arvados</span>
+</p>
+</li>
+<li>
+<p>
+Install: run <span class="monospaced">guix package --install=arvados-keep</span>
+</p>
+</li>
+<li>
+<p>
+Test that keepstore was installed: run <span class="monospaced">keepstore --help</span>
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+According to Arvados Documentation
+</dt>
+<dd>
+<p>
+Follow <a href="http://doc.arvados.org/install/install-keepstore.html">the keepstore installation</a> process on the Arvados documentation.
+</p>
+</dd>
+</dl></div>
+<div class="sect4">
+<h5 id="_configuration">Configuration</h5>
+<div class="paragraph"><p>TODO: Update this</p></div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_keep_balance">Keep-balance</h3>
+<div class="paragraph"><p>TODO: Fill this in</p></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -990,7 +1049,7 @@ The API server, shell server, keepstore, keep-balance are in a single repository
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-20 18:38:59 EAT
+Last updated 2017-06-20 19:09:06 EAT
 </div>
 </div>
 </body>
