@@ -1,8 +1,95 @@
-= Installing Arvados Keepstore With Authentication and Replication
+= Installing Arvados Keep With Authentication and Replication
 :Author: Frederick M. Muriithi
 :Email: fredmanglis@gmail.com
 :Date: 20 June 2017
 
 == Introduction
 
-Arvados Keep is a 
+Arvados Keep is a content-addressable storage system. To quote from https://arvados.org/[Arvados]:
+
+[quote]
+----
+Keep is a content-addressable storage system for managing and storing large collections of files with durable, cryptographically verifiable references and high-throughput processing. Keep works on a wide range of underyling file systems.
+----
+
+The core Arvados system is composed of many parts, but our focus is on using the Keep service, while providing both authentication of users and replication of the content across a variety of servers.
+
+To do this, we require the following parts of the arvados core system:
+
+* The Arvados SSO server
+* The Arvados API server
+* The Shell server
+* The Keepstore server
+* The keep-balance
+
+We shall look at each of this parts in the following sections.
+
+== Installation
+
+There are some http://doc.arvados.org/install/install-manual-prerequisites.html[prerequisite steps] to follow before installing any of the various parts. Of particular note is the 'unique identifier', generally referred to as 'uuid_prefix' in the Arvados documentation.
+
+There is also need to http://doc.arvados.org/install/install-postgresql.html[set up the PostgreSQL databases] for both the API server and the SSO server.
+
+Please do so before continuing.
+
+=== Arvados Single Sign-On Server
+
+The _arvados-sso-server_ provides a way to authenticate users and clients before giving the access to the various arvados services.
+
+==== Installing the SSO Server
+
+Please follow http://doc.arvados.org/install/install-sso.html[these instructions] to install and configure the SSO server.
+
+Some important configuration options are:
+
+===== /etc/arvados/sso/application.yml
+
+uuid_prefix::
+This is the unique identifier that was generated in the http://doc.arvados.org/install/install-manual-prerequisites.html[prerequisite steps] pointed to above. It is configured in the _/etc/arvados/sso/application.yml_ file.
+
+secret_token::
+This token is used by the SSO server to sign cookies. It should be unique to the site, and should be kept secret.
+
+site_title::
+The name of the site. This is the name shown to the site visitors to identify the site. It is configured in the _/etc/arvados/sso/application.yml_ file.
+
+default_link_title and default_link_url::
+Presented to the user after logging in as the default destination. The title is provided as a clickable hypertext link to the url.
+
+allow_account_registration::
+If set to true, the system will allow creation of new user accounts in the SSO's internal database. If set to false, it will not allow creation of new user accounts.
+
+
+
+=== Arvados API Server
+
+The API server binds the various parts of the Arvados system. It is used by various clients to access the various Arvados services.
+
+==== Installing the API Server
+
+The process to install and configure the API server is documented http://doc.arvados.org/install/install-api-server.html[here].
+
+The following are the most important configurations that need to be set up:
+
+uuid_prefix::
+This is the unique identifier that was generated in the http://doc.arvados.org/install/install-manual-prerequisites.html[prerequisite steps] pointed to above. It is configured in the _application.yml_ file.
+
+secret_token::
+This token should be unique for each site, and should be secret. It is used by the system to sign cookies. It is recommended that it be at least 50 characters long. It is configured in the _application.yml file.
+
+sso_app_secret::
+The API server uses this token to authenticate itself to the SSO Server. It is generated when installing the SSO Server. It is configured in the _application.yml_
+
+sso_app_id::
+A string value that acts as a sort of id for this server. Make this unique if you can. It is configured in the _application.yml_ file.
+
+sso_provider_url::
+This is the uri by which the API server can access the SSO server.
+
+
+== Repositories
+
+Here is a list of the code repositories for the various parts of the system:
+
+* https://github.com/curoverse/sso-devise-omniauth-provider[The SSO Server repository]
+* The API server, shell server, keepstore, keep-balance are in a single repository https://github.com/curoverse/arvados[here]
