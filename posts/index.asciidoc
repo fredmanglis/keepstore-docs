@@ -1,0 +1,8 @@
+= Installing Arvados Keepstore With Authentication and Replication
+:Author: Frederick M. Muriithi
+:Email: fredmanglis@gmail.com
+:Date: 20 June 2017
+
+== Introduction
+
+Arvados Keep is a 
