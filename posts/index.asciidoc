@@ -40,7 +40,7 @@ The _arvados-sso-server_ provides a way to authenticate users and clients before
 
 Please follow http://doc.arvados.org/install/install-sso.html[these instructions] to install and configure the SSO server.
 
-Some important configuration options are:
+The following are some important configuration options arranged by the default file they are found in:
 
 ===== /etc/arvados/sso/application.yml
 
@@ -59,7 +59,19 @@ Presented to the user after logging in as the default destination. The title is 
 allow_account_registration::
 If set to true, the system will allow creation of new user accounts in the SSO's internal database. If set to false, it will not allow creation of new user accounts.
 
+===== /etc/arvados/sso/database.yml
 
+database::
+This is the name of the SSO server database name as was set up in the http://doc.arvados.org/install/install-postgresql.html[database setup] process.
+
+username::
+The username that has access to the SSO server database
+
+password::
+The password that was used while creating the SSO server database
+
+host::
+The hostname on which the SSO server database is.
 
 === Arvados API Server
 
@@ -69,27 +81,42 @@ The API server binds the various parts of the Arvados system. It is used by vari
 
 The process to install and configure the API server is documented http://doc.arvados.org/install/install-api-server.html[here].
 
-The following are the most important configurations that need to be set up:
+The following are some of the most important configurations ordered by the default file where they are:
+
+===== /etc/arvados/api/application.yml
 
 uuid_prefix::
-This is the unique identifier that was generated in the http://doc.arvados.org/install/install-manual-prerequisites.html[prerequisite steps] pointed to above. It is configured in the _application.yml_ file.
+This is the unique identifier that was generated in the http://doc.arvados.org/install/install-manual-prerequisites.html[prerequisite steps] pointed to above.
 
 secret_token::
-This token should be unique for each site, and should be secret. It is used by the system to sign cookies. It is recommended that it be at least 50 characters long. It is configured in the _application.yml file.
+This token should be unique for each site, and should be secret. It is used by the system to sign cookies. It is recommended that it be at least 50 characters long.
 
 sso_app_secret::
-The API server uses this token to authenticate itself to the SSO Server. It is generated when installing the SSO Server. It is configured in the _application.yml_
+The API server uses this token to authenticate itself to the SSO Server. It is generated when installing the SSO Server.
 
 sso_app_id::
-A string value that acts as a sort of id for this server. Make this unique if you can. It is configured in the _application.yml_ file.
+A string value that acts as a sort of id for this server. Make this unique if you can.
 
 sso_provider_url::
 This is the uri by which the API server can access the SSO server.
 
+===== /etc/arvados/api/database.yml
+
+database::
+This is the name of the API server database name as was set up in the http://doc.arvados.org/install/install-postgresql.html[database setup] process.
+
+username::
+The username that has access to the API server database
+
+password::
+The password that was used while creating the API server database
+
+host::
+The hostname on which the API server database is.
 
 == Repositories
 
 Here is a list of the code repositories for the various parts of the system:
 
-* https://github.com/curoverse/sso-devise-omniauth-provider[The SSO Server repository]
+* The SSO Server repository can be found https://github.com/curoverse/sso-devise-omniauth-provider[here].
 * The API server, shell server, keepstore, keep-balance are in a single repository https://github.com/curoverse/arvados[here]
