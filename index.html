@@ -1017,13 +1017,88 @@ Follow <a href="http://doc.arvados.org/install/install-keepstore.html">the keeps
 </dl></div>
 <div class="sect4">
 <h5 id="_configuration">Configuration</h5>
-<div class="paragraph"><p>TODO: Update this</p></div>
+<div class="paragraph"><p>To understand the configuration variables, you can do <span class="monospaced">keepstore -h</span> and read the output to understand the variables. The following is an explanation on some of the important ones:</p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+Listen
+</dt>
+<dd>
+<p>
+The address and port where the keepstore server will listen for incoming connections.
+</p>
+</dd>
+<dt class="hdlist1">
+LogFormat
+</dt>
+<dd>
+<p>
+The form in which the log output from keepstore will be in. The valid values are <em>"json"</em> and <em>"text"</em>. The format of the requests and responses will also be affected by this setting.
+</p>
+</dd>
+<dt class="hdlist1">
+BlobSigningKeyFile
+</dt>
+<dd>
+<p>
+This is a path to the local file containing the secret key that is used for generating and verifying blobs. It should be the same key as the API server&#8217;s blob_signing_key.
+</p>
+</dd>
+<dt class="hdlist1">
+RequireSignatures
+</dt>
+<dd>
+<p>
+If set to true, only those read requests that contain a valid signature will receive the content requested in the read request. If the signature is invalid, or no signature is provided, the system responds to the request with <em>Forbidden</em>. If this setting is set to false, then all read requests are allowed. It is thus recommended that this setting be true.
+</p>
+</dd>
+<dt class="hdlist1">
+SystemAuthTokenFile
+</dt>
+<dd>
+<p>
+This is the path to the local file containing the Arvados API token used by <em>keep-balance</em>.
+</p>
+</dd>
+<dt class="hdlist1">
+Volumes
+</dt>
+<dd>
+<p>
+This is a list of the storage volumes that keepstore will use to save data in. If omitted, keepstore will, by default, use all directories named "keep" at the top-level of a mount point at startup. The valid volume types are, Azure, Directory, and S3
+</p>
+</dd>
+</dl></div>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_keep_balance">Keep-balance</h3>
-<div class="paragraph"><p>TODO: Fill this in</p></div>
+<div class="paragraph"><p>Keep-balance provides replication to the saved content. It also handles deletion of blocks. To quote the Arvados documentation:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>Keep-balance deletes unreferenced and overreplicated blocks from Keep servers, makes additional copies of underreplicated blocks, and moves blocks into optimal locations as needed (e.g., after adding new servers).</pre>
+</div></div>
+<div class="paragraph"><p>To install keep-balance, follow the instructions <a href="https://doc.arvados.org/install/install-keep-balance.html">here</a>. This page also contains the configuration details for keepstore.</p></div>
+<div class="paragraph"><p>Keep-balance expects that the API server be served over https, and will complain if it is not. If the certificate of the API server is self-signed, then the <em>Insecure</em> option in the <em>Client</em> section of the configuration needs to be set to <span class="monospaced">true</span>.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_useful_components">Other Useful Components</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Two other arvados components may also be useful to set up. They are not mandatory, but may prove useful in some scenarios. These components are Keep-web server and Keep-proxy server.</p></div>
+<div class="sect2">
+<h3 id="_keep_web_server">Keep-web Server</h3>
+<div class="paragraph"><p>Quoting the <a href="https://doc.arvados.org/install/install-keep-web.html">keep-web installation page</a>,</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>The Keep-web server provides read-only HTTP access to files stored in Keep. It serves public data to unauthenticated clients, and serves private data to clients that supply Arvados API tokens. It can be installed anywhere with access to Keep services, typically behind a web proxy that provides SSL support.</pre>
+</div></div>
+<div class="paragraph"><p>Please see the page linked above to install and configure.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_keep_proxy_server">Keep-proxy Server</h3>
+<div class="paragraph"><p>This allows clients that are not on the local network to access and use the keepstore servers. See <a href="https://doc.arvados.org/install/install-keepproxy.html">this page</a> to install and configure the Keep-proxy server.</p></div>
 </div>
 </div>
 </div>
@@ -1049,7 +1124,7 @@ The API server, shell server, keepstore, keep-balance are in a single repository
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-20 19:09:06 EAT
+Last updated 2017-06-21 16:36:11 EAT
 </div>
 </div>
 </body>
