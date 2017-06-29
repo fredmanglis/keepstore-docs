@@ -133,7 +133,7 @@ There are 2 ways to install:
 With GNU Guix::
   * Clone https://github.com/fredmanglis/guix-arvados[this repository].
   * Set up `GUIX_PACKAGE_PATH` environment variable. For example, if you cloned the repository into the following directory _$HOME/repositories/guix-arvados_ run, `export GUIX_PACKAGE_PATH=$HOME/repositories/guix-arvados`
-  * Install: run `guix package --install=arvados-keep`
+  * Install: run `guix package --install=arvados-keepstore`
   * Test that keepstore was installed: run `keepstore --help`
 
 According to Arvados Documentation::
@@ -170,7 +170,16 @@ Keep-balance provides replication to the saved content. It also handles deletion
 Keep-balance deletes unreferenced and overreplicated blocks from Keep servers, makes additional copies of underreplicated blocks, and moves blocks into optimal locations as needed (e.g., after adding new servers).
 ----
 
-To install keep-balance, follow the instructions https://doc.arvados.org/install/install-keep-balance.html[here]. This page also contains the configuration details for keepstore.
+There are two ways to install keep-balance:
+
+With GNU Guix::
+  * Clone https://github.com/fredmanglis/guix-arvados[this repository].
+  * Set up `GUIX_PACKAGE_PATH` environment variable. For example, if you cloned the repository into the following directory _$HOME/repositories/guix-arvados_ run, `export GUIX_PACKAGE_PATH=$HOME/repositories/guix-arvados`
+  * Install: run `guix package --install=arvados-keep-balance`
+  * Test that keepstore was installed: run `keep-balance --help`
+
+According to arvados documentation::
+  * Follow https://doc.arvados.org/install/install-keep-balance.html[the instructions here]. This page also contains the configuration details for keep-balance.
 
 Keep-balance expects that the API server be served over https, and will complain if it is not. If the certificate of the API server is self-signed, then the 'Insecure' option in the 'Client' section of the configuration needs to be set to `true`.
 

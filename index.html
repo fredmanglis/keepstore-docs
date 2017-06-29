@@ -996,7 +996,7 @@ Set up <span class="monospaced">GUIX_PACKAGE_PATH</span> environment variable. F
 </li>
 <li>
 <p>
-Install: run <span class="monospaced">guix package --install=arvados-keep</span>
+Install: run <span class="monospaced">guix package --install=arvados-keepstore</span>
 </p>
 </li>
 <li>
@@ -1078,7 +1078,48 @@ This is a list of the storage volumes that keepstore will use to save data in. I
 <div class="content monospaced">
 <pre>Keep-balance deletes unreferenced and overreplicated blocks from Keep servers, makes additional copies of underreplicated blocks, and moves blocks into optimal locations as needed (e.g., after adding new servers).</pre>
 </div></div>
-<div class="paragraph"><p>To install keep-balance, follow the instructions <a href="https://doc.arvados.org/install/install-keep-balance.html">here</a>. This page also contains the configuration details for keepstore.</p></div>
+<div class="paragraph"><p>There are two ways to install keep-balance:</p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+With GNU Guix
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Clone <a href="https://github.com/fredmanglis/guix-arvados">this repository</a>.
+</p>
+</li>
+<li>
+<p>
+Set up <span class="monospaced">GUIX_PACKAGE_PATH</span> environment variable. For example, if you cloned the repository into the following directory <em>$HOME/repositories/guix-arvados</em> run, <span class="monospaced">export GUIX_PACKAGE_PATH=$HOME/repositories/guix-arvados</span>
+</p>
+</li>
+<li>
+<p>
+Install: run <span class="monospaced">guix package --install=arvados-keep-balance</span>
+</p>
+</li>
+<li>
+<p>
+Test that keepstore was installed: run <span class="monospaced">keep-balance --help</span>
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+According to arvados documentation
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Follow <a href="https://doc.arvados.org/install/install-keep-balance.html">the instructions here</a>. This page also contains the configuration details for keep-balance.
+</p>
+</li>
+</ul></div>
+</dd>
+</dl></div>
 <div class="paragraph"><p>Keep-balance expects that the API server be served over https, and will complain if it is not. If the certificate of the API server is self-signed, then the <em>Insecure</em> option in the <em>Client</em> section of the configuration needs to be set to <span class="monospaced">true</span>.</p></div>
 </div>
 </div>
@@ -1124,7 +1165,7 @@ The API server, shell server, keepstore, keep-balance are in a single repository
 <div id="footnotes"><hr></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-06-21 16:36:11 EAT
+Last updated 2017-06-29 16:10:53 EAT
 </div>
 </div>
 </body>
